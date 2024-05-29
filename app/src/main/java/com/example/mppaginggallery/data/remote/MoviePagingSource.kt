@@ -6,7 +6,6 @@ import com.example.mppaginggallery.data.dto.toMovie
 import com.example.mppaginggallery.di.IoDispatcher
 import com.example.mppaginggallery.domain.Movie
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException

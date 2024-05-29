@@ -12,14 +12,11 @@ class AuthenticationInterceptor @Inject constructor(
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response = runBlocking {
         val request = chain.request()
-
         val response = chain.proceed(request.addAuthentication(Constants.API_KEY))
-
 //        handle auth error and etc here
 //        if (response.code == 401) {
 //        }
         response
-
     }
 
     private fun Request.addAuthentication(

@@ -6,7 +6,6 @@ import retrofit2.http.Query
 
 
 interface MovieApi {
-
     @GET("discover/movie?")
     suspend fun getFavMovies(
         @Query("page") page: Int,
