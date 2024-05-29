@@ -8,7 +8,7 @@ import com.example.mppaginggallery.domain.repo.MoviesPagingRepo
 import javax.inject.Inject
 
 class MoviesPagingRepoImpl @Inject constructor(private val pagingSource: MoviePagingSource,) : MoviesPagingRepo {
-    override fun getCats() = Pager(
+    override fun getMovies() = Pager(
         config = PagingConfig(
             pageSize = PAGE_LIMIT,
         ),

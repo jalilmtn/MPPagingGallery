@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     //Map data to remove duplicated items, we will have issue by using duplicated key in lazy column
-    val pagingDataFlow = moviesPagingRepo.getCats().map {
+    val pagingDataFlow = moviesPagingRepo.getMovies().map {
         val personMap = mutableSetOf<Int>()
         it.filter { movie ->
             if (personMap.contains(movie.id)) {

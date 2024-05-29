@@ -5,5 +5,5 @@ import com.example.mppaginggallery.domain.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface MoviesPagingRepo {
-    fun getCats():  Flow<PagingData<Movie>>
+    fun getMovies():  Flow<PagingData<Movie>>
 }
