@@ -70,8 +70,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCatPagingSource(catsPagingSource: MoviePagingSource): MoviesPagingRepo {
-        return MoviesPagingRepoImpl(catsPagingSource)
+    fun provideCatPagingSource(moviePagingSource: MoviePagingSource): MoviesPagingRepo {
+        return MoviesPagingRepoImpl(moviePagingSource)
     }
 }
 
