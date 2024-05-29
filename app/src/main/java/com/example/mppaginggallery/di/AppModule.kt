@@ -10,17 +10,23 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    @IoDispatcher
+    @Provides
+    fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
     @Provides
     @Singleton
@@ -55,8 +61,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePagingSource(movieApi: MovieApi): MoviePagingSource {
-        return MoviePagingSource(movieApi)
+    fun providePagingSource(
+        movieApi: MovieApi,
+        @IoDispatcher ioDispatcher: CoroutineDispatcher,
+    ): MoviePagingSource {
+        return MoviePagingSource(movieApi, ioDispatcher)
     }
 
     @Provides
@@ -65,3 +74,7 @@ object AppModule {
         return MoviesPagingRepoImpl(catsPagingSource)
     }
 }
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class IoDispatcher
