@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MPPagingGallery</string>
+    <string name="no_description_message">No description</string>
+    <string name="no_title_message">No Title</string>
 </resources>

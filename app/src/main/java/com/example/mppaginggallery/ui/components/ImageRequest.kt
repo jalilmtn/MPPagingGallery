@@ -16,7 +16,7 @@ fun coilImageRequest(
     context: Context,
     data: Any?,
     placeHolder: Int = R.drawable.gray_square,
-    placeHolderDrawable: Drawable? = null,
+    error: Int = R.drawable.ic_error,
     size: Size = Size.ORIGINAL,
     memoryCachePolicy: CachePolicy = CachePolicy.ENABLED,
     retryHash: Int? = null,
@@ -29,16 +29,11 @@ fun coilImageRequest(
     val imageRequestBuilder = ImageRequest.Builder(context)
         .size(size)
         .placeholder(placeHolder)
-        .placeholder(placeHolderDrawable)
         .setParameter("retry_hash", retryHash)
         .data(data = data)
+        .error(error)
         .memoryCachePolicy(memoryCachePolicy)
         .memoryCacheKey(memoryCacheKey)
         .listener(onStart, onCancel, onError, onSuccess)
-    if (placeHolderDrawable == null) {
-        imageRequestBuilder.placeholder(placeHolder)
-    } else {
-        imageRequestBuilder.placeholder(placeHolderDrawable)
-    }
     return imageRequestBuilder.build()
 }

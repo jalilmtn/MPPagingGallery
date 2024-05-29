@@ -17,8 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.example.mppaginggallery.R
 import com.example.mppaginggallery.common.Constants
 import com.example.mppaginggallery.domain.Movie
 
@@ -45,12 +48,20 @@ fun MovieItem(
                 .fillMaxWidth()
                 .aspectRatio(.7f)
                 .clip(RoundedCornerShape(CornerSize(8.dp))),
-            contentDescription = null
+            contentDescription = null,
         )
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = movie.title, style = MaterialTheme.typography.labelMedium)
+        Text(
+            text = movie.title.ifEmpty { stringResource(R.string.no_title_message) },
+            style = MaterialTheme.typography.labelMedium,
+        )
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = movie.overview, style = MaterialTheme.typography.bodyMedium)
+        Text(
+            text = movie.overview.ifEmpty { stringResource(R.string.no_description_message) },
+            style = MaterialTheme.typography.bodyMedium,
+            maxLines = 6,
+            overflow = TextOverflow.Ellipsis,
+        )
 
     }
 
